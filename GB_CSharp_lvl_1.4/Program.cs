@@ -43,6 +43,44 @@ namespace GB_CSharp_lvl_1._4
         }
 
         /// <summary>
+        /// Свойство возвращающее минимальный элемент массива
+        /// </summary>
+        public int Min
+        {
+            get
+            {
+                int min = Arr[0, 0];
+                for (int i = 0; i < Arr.GetLength(0); i++)
+                {
+                    for (int j = 0; j < Arr.GetLength(1); j++)
+                    {
+                        if (Arr[i, j] < min) min = Arr[i, j];
+                    }
+                }
+                return min;
+            }
+        }
+
+        /// <summary>
+        /// Свойство возвращающее максимальный элемент массива
+        /// </summary>
+        public int Max
+        {
+            get
+            {
+                int max = Arr[0, 0];
+                for (int i = 0; i < Arr.GetLength(0); i++)
+                {
+                    for (int j = 0; j < Arr.GetLength(1); j++)
+                    {
+                        if (Arr[i, j] > max) max = Arr[i, j];
+                    }
+                }
+                return max;
+            }
+        }
+
+        /// <summary>
         /// Метод выводит массив в консоль
         /// </summary>
         public void Print()
@@ -56,14 +94,110 @@ namespace GB_CSharp_lvl_1._4
                 Console.WriteLine();
             }
         }
+
+        /// <summary>
+        /// Метод возвращает сумму всех элементов массива
+        /// </summary>
+        /// <returns></returns>
+        public long Sum()
+        {
+            long sum = 0;
+            for (int i = 0; i < Arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < Arr.GetLength(1); j++)
+                {
+                    sum += Arr[i,j];
+                }
+            }
+            return sum;
+        }
+
+        /// <summary>
+        /// Метод возвращает сумму всех элементов массива больше заданного
+        /// </summary>
+        /// <param name="min"></param>
+        /// <returns></returns>
+        public long Sum(int min)
+        {
+            long sum = 0;
+            for (int i = 0; i < Arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < Arr.GetLength(1); j++)
+                {
+                    if (Arr[i,j] > min) sum += Arr[i, j];
+                }
+            }
+            return sum;
+        }
+
+        /// <summary>
+        /// Метод возвращающий индекс максимального элемента массива
+        /// </summary>
+        /// <param name="indexI"></param>
+        /// <param name="indexJ"></param>
+        public void IndexOfMax(out int indexI, out int indexJ)
+        {
+            int max = Max;
+            indexI = 0;
+            indexJ = 0;
+
+            //Реализация проходит весь массив и выдает индекс последнего из максимальных элементов если их несколько
+            //for (int i = 0; i < Arr.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < Arr.GetLength(1); j++)
+            //    {
+            //        if (Arr[i, j] == max)
+            //        {
+            //            indexI = i;
+            //            indexJ = j;
+            //        }
+            //    }
+            //}
+
+            //Реализация выдает индекс первого найденного максимального элемента массива
+            int i = 0;
+            while (indexI == 0 && i < Arr.GetLength(0) && indexJ == 0)
+            {
+                int j = 0;
+                while (indexJ == 0 && j < Arr.GetLength(1))
+                {
+                    if (Arr[i, j] == max)
+                    {
+                        indexI = i;
+                        indexJ = j;
+                    }
+                    j++;
+                }
+                i++;
+
+            } 
+        }
+
+
     }
+
+
+        
 
     class Program
     {
         static void Main(string[] args)
         {
-            Array2D testArr = new Array2D(5, 7, 0, 100);
+            Array2D testArr = new Array2D(3, 3, 0, 100);
             testArr.Print();
+            Console.WriteLine();
+            Console.WriteLine($"Сумма всех элементов массива = {testArr.Sum()}");
+            Console.WriteLine();
+            int min = 70;
+            Console.WriteLine($"Сумма всех элементов больше {min} равна: {testArr.Sum(min)}");
+            Console.WriteLine();
+            Console.WriteLine($"Минимальный элемент массива: {testArr.Min}");
+            Console.WriteLine();
+            int i = 0;
+            int j = 0;
+            testArr.IndexOfMax(out i, out j);
+            Console.WriteLine($"Максимальный элемент массива: {testArr.Max}, с индексом [{i},{j}]");
+            Console.WriteLine();
             Console.ReadKey();
         }
     }
