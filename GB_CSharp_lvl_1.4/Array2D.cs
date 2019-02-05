@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+
 /*  5)  *а) Реализовать библиотеку с классом для работы с двумерным массивом.Реализовать конструктор, заполняющий массив случайными числами.
             Создать методы, которые возвращают сумму всех элементов массива, сумму всех элементов массива больше заданного, свойство, 
             возвращающее минимальный элемент массива, свойство, возвращающее максимальный элемент массива, метод, возвращающий номер максимального
@@ -25,8 +27,8 @@ namespace GB_CSharp_lvl_1._4
         /// </summary>
         /// <param name="a">кол-во строк массива</param>
         /// <param name="b">кол-во столбцов массива</param>
-        /// <param name="min">минимальное значение</param>
-        /// <param name="max">максимальное значение</param>
+        /// <param name="min">минимальное значение элемента</param>
+        /// <param name="max">максимальное значение элемента</param>
         public Array2D(int a, int b, int min, int max)
         {
             Arr = new int[a, b];
@@ -38,6 +40,28 @@ namespace GB_CSharp_lvl_1._4
                     Arr[i, j] = rnd.Next(min, max);
                 }
             }
+        }
+
+        /// <summary>
+        /// Конструктор заполняющий массив [a,b] случайными числами из заданного диапозона и записывающий его в заданный фаил.
+        /// </summary>
+        /// <param name="a">кол-во строк массива</param>
+        /// <param name="b">кол-во столбцов массива</param>
+        /// <param name="min">минимальное значение элемента</param>
+        /// <param name="max">максимальное значение элемента</param>
+        /// <param name="pathToFile">Путь к файлу</param>
+        public Array2D(int a, int b, int min, int max, string pathToFile)
+        {
+            Arr = new int[a, b];
+            Random rnd = new Random();
+            for (int i = 0; i < a; i++)
+            {
+                for (int j = 0; j < b; j++)
+                {
+                    Arr[i, j] = rnd.Next(min, max);
+                }
+            }
+            this.PrintToFile(pathToFile);
         }
 
         /// <summary>
@@ -186,6 +210,34 @@ namespace GB_CSharp_lvl_1._4
             }
         }
 
+        /// <summary>
+        /// Метод записывает массив в фаил.
+        /// </summary>
+        public void PrintToFile()
+        {
+            string[] txt = new string[Arr.GetLength(1)];
+            for (int i = 0; i < Arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < Arr.GetLength(1); j++) txt[i] = txt[i] + Convert.ToString(Arr[i, j]) + "\t";
+
+                File.WriteAllLines("D:\\out_lvl_1.4.txt", txt);
+            }
+        }
+
+        /// <summary>
+        /// Метод записывает массив в заданный фаил.
+        /// </summary>
+        /// <param name="pathToFile">Путь к файлу</param>
+        public void PrintToFile(string pathToFile)
+        {
+            string[] txt = new string[Arr.GetLength(1)];
+            for (int i = 0; i < Arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < Arr.GetLength(1); j++) txt[i] = txt[i] + Convert.ToString(Arr[i, j]) + "\t";
+
+                File.WriteAllLines(pathToFile, txt);
+            }
+        }
 
     }
 

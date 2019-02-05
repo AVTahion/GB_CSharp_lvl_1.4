@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 
 /*  5)  *а) Реализовать библиотеку с классом для работы с двумерным массивом.Реализовать конструктор, заполняющий массив случайными числами.
             Создать методы, которые возвращают сумму всех элементов массива, сумму всех элементов массива больше заданного, свойство, 
@@ -21,7 +20,7 @@ namespace GB_CSharp_lvl_1._4
     {
         static void Main(string[] args)
         {
-            Array2D testArr = new Array2D(3, 3, 0, 100);
+            Array2D testArr = new Array2D(3, 3, 0, 100, "D:\\out_lvl_1.4.txt");
             testArr.Print();
             Console.WriteLine();
             Console.WriteLine($"Сумма всех элементов массива = {testArr.Sum()}");
