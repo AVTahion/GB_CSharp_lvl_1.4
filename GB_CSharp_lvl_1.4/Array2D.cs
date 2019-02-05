@@ -135,9 +135,10 @@ namespace GB_CSharp_lvl_1._4
         /// <param name="indexJ"></param>
         public void IndexOfMax(out int indexI, out int indexJ)
         {
-            int max = Max;
+           
             indexI = 0;
             indexJ = 0;
+            //int max = Max;
 
             //Реализация проходит весь массив и выдает индекс последнего из максимальных элементов если их несколько
             //for (int i = 0; i < Arr.GetLength(0); i++)
@@ -152,23 +153,37 @@ namespace GB_CSharp_lvl_1._4
             //    }
             //}
 
-            //Реализация выдает индекс первого найденного максимального элемента массива
-            int i = 0;
-            while (indexI == 0 && i < Arr.GetLength(0) && indexJ == 0)
+            //Реализация выдает индекс первого найденного максимального элемента массива, не проходя весь массив
+            //int i = 0;
+            //while (indexI == 0 && i < Arr.GetLength(0) && indexJ == 0)
+            //{
+            //    int j = 0;
+            //    while (indexJ == 0 && j < Arr.GetLength(1))
+            //    {
+            //        if (Arr[i, j] == max)
+            //        {
+            //            indexI = i;
+            //            indexJ = j;
+            //        }
+            //        j++;
+            //    }
+            //    i++;
+            //}
+
+            //Реализация не использует свойство Max, а является его модификацией
+            int max = Arr[0, 0];
+            for (int i = 0; i < Arr.GetLength(0); i++)
             {
-                int j = 0;
-                while (indexJ == 0 && j < Arr.GetLength(1))
+                for (int j = 0; j < Arr.GetLength(1); j++)
                 {
-                    if (Arr[i, j] == max)
+                    if (Arr[i, j] > max)
                     {
+                        max = Arr[i, j];
                         indexI = i;
                         indexJ = j;
                     }
-                    j++;
                 }
-                i++;
-
-            } 
+            }
         }
 
 
