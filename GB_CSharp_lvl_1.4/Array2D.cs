@@ -239,6 +239,33 @@ namespace GB_CSharp_lvl_1._4
             }
         }
 
+        /// <summary>
+        /// Метод заполняет двумерный массив значениями из указанного файла.
+        /// </summary>
+        /// <param name="pathToFile">Путь к файлу</param>
+        public void ReadFile(string pathToFile)
+        {
+            string text = File.ReadAllText(pathToFile);
+            string[] textArr = text.Split('\t');    //разбиение на массив с разделением по табуляции
+            int[] testInt = new int[textArr.Length];
+
+            for (int k = 0; k < textArr.Length; k++)
+            {
+                int x = 0;
+                Int32.TryParse(textArr[k], out x);
+                testInt[k] = x;
+            }
+
+            int y = 0;
+            for (int i = 0; i < Arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < Arr.GetLength(1); j++)
+                {
+                    Arr[i, j] = testInt[y];
+                    y++;
+                }
+            }
+        }
     }
 
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 /*  5)  *а) Реализовать библиотеку с классом для работы с двумерным массивом.Реализовать конструктор, заполняющий массив случайными числами.
             Создать методы, которые возвращают сумму всех элементов массива, сумму всех элементов массива больше заданного, свойство, 
@@ -35,6 +36,10 @@ namespace GB_CSharp_lvl_1._4
             testArr.IndexOfMax(out i, out j);
             Console.WriteLine($"Максимальный элемент массива: {testArr.Max}, с индексом [{i},{j}]");
             Console.WriteLine();
+            Console.ReadKey();
+
+            testArr.ReadFile("D:\\out_lvl_1.4.txt");
+            testArr.Print();
             Console.ReadKey();
         }
     }
