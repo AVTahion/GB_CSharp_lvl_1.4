@@ -14,6 +14,11 @@ namespace Task_1
 {
     class Program
     {
+        /// <summary>
+        /// Метод подсчитывает количество пар чисел в массиве в которых только одно число делиться на 3.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns></returns>
         private static int CheckPairs(int[] array)
         {
             int amount = 0;
