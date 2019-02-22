@@ -21,7 +21,7 @@ namespace GB_CSharp_lvl_1._4
     {
         static void Main(string[] args)
         {
-            Array2D testArr = new Array2D(3, 3, 0, 100, "D:\\out_lvl_1.4.txt");
+            Array2D testArr = new Array2D(3, 3, 0, 100, "C:\\out_lvl_1.4.txt");
             testArr.Print();
             Console.WriteLine();
             Console.WriteLine($"Сумма всех элементов массива = {testArr.Sum()}");
@@ -38,7 +38,7 @@ namespace GB_CSharp_lvl_1._4
             Console.WriteLine();
             Console.ReadKey();
 
-            testArr.ReadFile("D:\\out_lvl_1.4.txt");
+            testArr.ReadFile("D:\\out_lvl_1.txt");
             testArr.Print();
             Console.ReadKey();
         }

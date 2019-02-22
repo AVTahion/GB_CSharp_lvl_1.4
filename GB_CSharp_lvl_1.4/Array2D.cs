@@ -215,12 +215,19 @@ namespace GB_CSharp_lvl_1._4
         /// </summary>
         public void PrintToFile()
         {
-            string[] txt = new string[Arr.GetLength(1)];
-            for (int i = 0; i < Arr.GetLength(0); i++)
+            try
             {
-                for (int j = 0; j < Arr.GetLength(1); j++) txt[i] = txt[i] + Convert.ToString(Arr[i, j]) + "\t";
+                string[] txt = new string[Arr.GetLength(1)];
+                for (int i = 0; i < Arr.GetLength(0); i++)
+                {
+                    for (int j = 0; j < Arr.GetLength(1); j++) txt[i] = txt[i] + Convert.ToString(Arr[i, j]) + "\t";
 
-                File.WriteAllLines("D:\\out_lvl_1.4.txt", txt);
+                    File.WriteAllLines("D:\\out_lvl_1.4.txt", txt);
+                }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -230,12 +237,19 @@ namespace GB_CSharp_lvl_1._4
         /// <param name="pathToFile">Путь к файлу</param>
         public void PrintToFile(string pathToFile)
         {
-            string[] txt = new string[Arr.GetLength(1)];
-            for (int i = 0; i < Arr.GetLength(0); i++)
+            try
             {
-                for (int j = 0; j < Arr.GetLength(1); j++) txt[i] = txt[i] + Convert.ToString(Arr[i, j]) + "\t";
+                string[] txt = new string[Arr.GetLength(1)];
+                for (int i = 0; i < Arr.GetLength(0); i++)
+                {
+                    for (int j = 0; j < Arr.GetLength(1); j++) txt[i] = txt[i] + Convert.ToString(Arr[i, j]) + "\t";
 
-                File.WriteAllLines(pathToFile, txt);
+                    File.WriteAllLines(pathToFile, txt);
+                }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -245,26 +259,34 @@ namespace GB_CSharp_lvl_1._4
         /// <param name="pathToFile">Путь к файлу</param>
         public void ReadFile(string pathToFile)
         {
-            string text = File.ReadAllText(pathToFile);
-            string[] textArr = text.Split('\t');    //разбиение на массив с разделением по табуляции
-            int[] testInt = new int[textArr.Length];
-
-            for (int k = 0; k < textArr.Length; k++)
+            try
             {
-                int x = 0;
-                Int32.TryParse(textArr[k], out x);
-                testInt[k] = x;
-            }
+                string text = File.ReadAllText(pathToFile);
+                string[] textArr = text.Split('\t');    //разбиение на массив с разделением по табуляции
+                int[] testInt = new int[textArr.Length];
 
-            int y = 0;
-            for (int i = 0; i < Arr.GetLength(0); i++)
-            {
-                for (int j = 0; j < Arr.GetLength(1); j++)
+                for (int k = 0; k < textArr.Length; k++)
                 {
-                    Arr[i, j] = testInt[y];
-                    y++;
+                    int x = 0;
+                    Int32.TryParse(textArr[k], out x);
+                    testInt[k] = x;
+                }
+
+                int y = 0;
+                for (int i = 0; i < Arr.GetLength(0); i++)
+                {
+                    for (int j = 0; j < Arr.GetLength(1); j++)
+                    {
+                        Arr[i, j] = testInt[y];
+                        y++;
+                    }
                 }
             }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
     }
 
