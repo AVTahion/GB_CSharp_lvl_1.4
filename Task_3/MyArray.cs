@@ -112,7 +112,7 @@ namespace Task_3
         {
             string s = "";
             foreach (int v in a)
-                s = s + v + " ";
+                s +=$"{v,4}";
             return s;
         }
 
